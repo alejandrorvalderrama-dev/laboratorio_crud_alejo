@@ -1,0 +1,127 @@
+const mysql = requiere('mysql2/promise');
+const env = require('./env');
+
+const pool = mysql.createPool({
+    host: env.DB_HOST,
+    port: env.DB_PORT,
+    user: env.DB_USER,
+    password: env.DB_PASSWORD,
+    database: env.DB_DATABASE,
+    waitForConnections: true,
+    ConnectionLimit: 10
+});
+
+module.exports = pool;
+
+config.env.js
+
+requiere('dotenv').config();
+
+const requiered = ['DB_HOST', 'DB_USER','DB_NAME', 'JWT_SECRET'];
+
+for (!process.env[name]) {
+    throw new Error(`falta la variable de entorno: ${name}`);
+}
+}
+
+module.exports = {
+    port: number(process.env.PORT || 3000),
+    port: number(process.env.DB_PORT || 3306),
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+
+};
+jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN || '2h'
+},
+admin: {
+    name: process.env.ADMIN_NAME,
+    email: process.env.ADMIN_EMAIL,
+    password: process.env.ADMIN_PASSWORD 
+}
+};
+
+controllers/auth.controller.js
+const authService = require('../services/auth.service');
+
+async function register(req, res, next) {
+    try
+}
+const { id_usuario } = await authService.register(req.body);
+
+return res.status(201).json({ 
+    ok:true, 
+    message: 'Usuario registrado',
+});
+} catch (error) {
+    next(error);
+}
+}
+
+async function login(req, res, next) {
+    try {
+        const { user, token } = await authService.loginuser(req.body);
+    } catch (error) {
+        next(error);
+    }
+}
+
+module.exports = { register, login };
+
+controllers/equipos.controller.js
+
+const equiposService = require('../services/equipos.service');
+try {
+    const data = await equiposService.listEquipos();
+    res.json({ ok: true, data });
+} catch (error) {
+    next(error);
+}
+
+async function update(req, res, next) {
+    try {
+        awayt equiposService.updateEquipo(req.params.id, req.body);
+}
+} catch (error) {
+    next(error);
+
+    async function deleteEquipo(req, res, next) {
+        try {
+            await equiposService.deleteEquipo(req.params.id);
+            res.json({ ok: true, message: 'Equipo eliminado' });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    module.exports = { list, getById, create, update, remove };
+
+    middlewares/auth.middleware.js
+
+    const jwt = require('jsonwebtoken');
+    const env = require('../config/env');
+
+    function authenticateToken(req, res, next) {
+        const header = req.headers.authorization;
+
+        if (!header // !header.startsWith('Bearer ')) {
+            return res.status(401).json({ 
+                ok: false,
+                message: 'Token no requerido'
+            });
+        }
+
+        const token = header.substring(7);
+
+        try {
+            req.user = jwt.verify(token, env.jwt.secret);
+            next();
+        } catch {
+            return res.status(401).json({ 
+                ok: false,
+                message: 'No tienes persmisos para realizar esta operación'
+        });
+        }
+
+        module.exports = { authenticate, authorice };   
