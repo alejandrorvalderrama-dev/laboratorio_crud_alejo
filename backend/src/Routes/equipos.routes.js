@@ -8,3 +8,9 @@ const router = express.router();
 router.get(´/', controller.list);
 router.get('/:id', controller.getById);
 )
+
+// solo admin puede eliminar.
+router.delete(*/:id, authorice('admin'), controller.remove);
+
+module.exports = router;
+
