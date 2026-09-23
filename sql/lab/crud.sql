@@ -25,7 +25,6 @@ CREATE TABLE equipos (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
-
 INSERT INTO equipos (nombre, marca, modelo) VALUES
 (`portatil`, `lenovo`, `thinkpad`),
 (`monitor`, `LG`, `ultrawide`),
