@@ -1,7 +1,7 @@
 Server.js
 
 const app = require('./src/app');
-const env = require('./src/config/env');
+const env = require('../src/config/env');
 const seedAdmin = require('./src/config/seedAdmin');
 
 async function start ()  {

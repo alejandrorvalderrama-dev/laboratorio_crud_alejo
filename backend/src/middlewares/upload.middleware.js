@@ -1,6 +1,6 @@
 const path = require('path');
 const multer = require('multer');
-const appError = require('./utils/AppError');
+const appError = require('../utils/AppError');
 
 const UPLOAD_DIR = path.join(__dirname, '../uploads', equipos');
 const ALLOWED_MINE = ['image/jpeg', 'image/png', 'image/webp'];
